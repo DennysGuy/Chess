@@ -6,8 +6,18 @@ import java.util.Objects;
 
 public class Pawn extends Piece{
 
+    private boolean hasMoved = false;
     public Pawn(boolean white){
         super(white);
+    }
+
+
+    public boolean getHasMoved(){
+        return hasMoved;
+    }
+
+    public void setHasMoved(boolean moved){
+        hasMoved = moved;
     }
 
     @Override
