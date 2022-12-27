@@ -16,18 +16,27 @@ public class Board {
  6 | [ P][ P][ P][ P][ P][ P][ P][ P] |
  7 | [ R][ N][ B][ Q][ K][ B][ N][ R] |
    ====================================
+   white pawn at [6,0]
+   - if first turn can advance 2 squares ahead otherwise move 1 square
+   - starting position [6,0] [4,0] start.getX() - end.getX() <=2 then its a valid move
+
   */
     public Board(){
 
         //team black
-        board[0][0] = Square(0,0,Rook(false));
-        board[0][1] = Square(0,1,Knight(false));
-        board[0][2] = Square(0,2,Bishop(false));
-        board[0][3] = Square(0,3,Queen(false));
-        board[0][4] = Square(0,4,King(false));
-        board[0][5] = Square(0,5,Bishop(false));
-        board[0][6] = Square(0,6,Knight(false));
-        board[0][7] = Square(0,7,Rook(false));
+        board[0][0] = new Square(0,0,new Rook(false));
+        board[0][1] = new Square(0,1,new Knight(false));
+        board[0][2] = new Square(0,2,new Bishop(false));
+        board[0][3] = new Square(0,3,new Queen(false));
+        board[0][4] = new Square(0,4,new King(false));
+        board[0][5] = new Square(0,5,new Bishop(false));
+        board[0][6] = new Square(0,6,new Knight(false));
+        board[0][7] = new Square(0,7,new Rook(false));
+
+        //create black pawns
+        for(int i = 0; i < 8; i++){
+            board[1][i] = new Square(1,i, new Pawn(false));
+        }
 
         //inialize empty squares
         for(int i = 2; i < 6; i++){
@@ -46,9 +55,14 @@ public class Board {
         board[7][6] = Square(7,6,Knight(true));
         board[7][7] = Square(7,7,Rook(true));
 
-
     }
 
+    @Override
+    public String toString(){
 
+
+        return "test";
+
+    }
 
 }
