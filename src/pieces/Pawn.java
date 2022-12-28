@@ -35,19 +35,54 @@ public class Pawn extends Piece{
             ~ need to consider diagonal spots - if there is no enemy piece in a square diagonal/forward to a pawn, return false
 
          */
+
+
         //Just testing something
         boolean playerOne = game.isPlayerOne();
-        if(playerOne){
-            if(!getHasMoved()){
-                if(board.getSquare(start.getX() + 1, start.getY()) != null && end.getPiece() != null){
+        /*
+        This is to handle the case where the pawn is in its starting postion.
+        This only applies if the end square chosen by either player is +-2 on the y-axis
+            -If it is player one(white), we let them move up the y-axis.
+            -Else, the player is black, and they are allowed to move down the y-axis.
+        */
+
+        if (playerOne && !getHasMoved() && (start.getY() - 2 == end.getY())) {
+            if (!getHasMoved()) {
+                if (board.getSquare(start.getX(), start.getY() - 1) != null && end.getPiece() != null) {
                     return false;
-                    //Hi matt!
+                } else {
+                    return true;
                 }
             }
-        }else{
-
+        } else if (!playerOne && !getHasMoved() && (start.getY() + 2 == end.getY())) {
+            if (board.getSquare(start.getX(), start.getY() + 1) != null && end.getPiece() != null) {
+                return false;
+            } else {
+                return true;
+            }
         }
-        //
+        /*
+        This is to handle the case where the pawn can only move one square. Not implementing kill here yet.
+        Going to check whether there is a free space in front of them(either black or white).
+         */
+        if (playerOne && (start.getY() - 1 == end.getY())) {
+            if (board.getSquare(start.getX(), start.getY() - 1) != null && end.getPiece() != null) {
+                return false;
+            } else {
+                return true;
+            }
+        } else if (playerOne && (start.getY() + 1 == end.getY())) {
+            if (board.getSquare(start.getX(), start.getY() + 1) != null && end.getPiece() != null) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+        //If all else fails here, all other options were invalid, and we just return false.
+        return false;
+
+        /*
+        Getting rid of this for the time being.
 
         if (getHasMoved() == false) {
             if (board.getSquare(start.getX()+1, start.getY()).getPiece() != null && end.getPiece() != null)
@@ -59,6 +94,8 @@ public class Pawn extends Piece{
         }
 
         return true;
+         */
+
     }
 
     @Override
