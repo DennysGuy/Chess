@@ -1,7 +1,75 @@
 package pieces;
 
+import java.util.Objects;
+import Board.*;
+import Engine.*;
+
+
 public abstract class Piece {
 
+    //this will determine if the piece is white or not
+    private boolean white;
+    //this will determine if the piece is on the board or not
+    private boolean killed = false;
+    //gives the piece a name
 
+
+    public Piece(){}
+
+
+    public Piece(final boolean white){
+        this.setWhiteStatus(white);
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Piece piece = (Piece) o;
+        return white == piece.white && killed == piece.killed;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(white, killed);
+    }
+
+    //getters
+    public boolean isWhite(){
+        return this.white;
+    }
+
+    public boolean isKilled(){
+        return this.killed;
+    }
+
+    //setters
+
+
+    public void setWhiteStatus(boolean status){
+        this.white = status;
+    }
+
+    public void setKilledStatus(boolean status){
+        this.killed = status;
+    }
+
+
+    /*
+        this will be the movement calculation
+        @param board  - insert the board
+        @param start  - insert starting coordinates
+        @Param end    - insert end coordinates to move to
+
+        movement will be calculated based on starting and ending coordinates given
+     */
+
+    public abstract boolean canMove(Board board, Square start, Square end, Game game);
+    //default toString which will allow us to display the piece to the user
+    @Override
+    public String toString(){
+        return null;
+    }
 
 }
