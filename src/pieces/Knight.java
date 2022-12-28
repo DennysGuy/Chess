@@ -1,6 +1,7 @@
 package pieces;
 
 import Board.*;
+import Engine.Game;
 
 public class Knight extends Piece{
     public Knight(boolean white){
@@ -8,7 +9,7 @@ public class Knight extends Piece{
     }
 
     @Override
-    public boolean canMove(Board board, Square start, Square end) {
+    public boolean canMove(Board board, Square start, Square end, Game game) {
         return false;
     }
 

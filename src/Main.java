@@ -14,8 +14,16 @@ public class Main {
 
         if (choice == 1) {
             clearConsole();
-            Board board = new Board();
-            board.printBoard();
+            //initialize game class here
+            GameState state = GameState.ACTIVE;
+            Game newGame = new Game(state);
+        }
+        else if (choice == 2){
+            System.out.println("create a static method for rules");
+        }
+        else if (choice == 3){
+            System.exit(0);
+
         }
     }
 }

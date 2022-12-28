@@ -6,5 +6,6 @@ public enum GameState {
     BLACK_WIN,
     CHECK,
     STALEMATE,
-    FORFEIT
+    FORFEIT,
+    OFF
 }
