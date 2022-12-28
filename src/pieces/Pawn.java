@@ -41,6 +41,7 @@ public class Pawn extends Piece{
             if(!getHasMoved()){
                 if(board.getSquare(start.getX() + 1, start.getY()) != null && end.getPiece() != null){
                     return false;
+                    //Hi matt!
                 }
             }
         }else{
