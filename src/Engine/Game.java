@@ -13,12 +13,8 @@ public class Game {
         Board board = new Board();
         Scanner inp = new Scanner(System.in);
 
-
-
         while (state == GameState.ACTIVE){
-            System.out.println("get player is currently: " + getPlayer());
             board.printBoard();
-
             if(getPlayer() == true){
                 playerOneMove(inp,board);
 
@@ -59,9 +55,9 @@ public class Game {
         pOneCoordinates[3] = inp.nextInt();
 
         Move move = new Move();
-        move.newMove(board, board.getSquare(pOneCoordinates[0],pOneCoordinates[1]), board.getSquare(pOneCoordinates[2],pOneCoordinates[3]), this.getPlayer());
 
         boolean newMove = move.newMove(board, board.getSquare(pOneCoordinates[0],pOneCoordinates[1]), board.getSquare(pOneCoordinates[2],pOneCoordinates[3]), this.getPlayer());
+
         if (newMove == true) {
             this.setPlayer(false);
         }
@@ -85,8 +81,8 @@ public class Game {
         pTwoCoordinates[3] = inp.nextInt();
 
         Move move = new Move();
-
         boolean newMove = move.newMove(board, board.getSquare(pTwoCoordinates[0],pTwoCoordinates[1]), board.getSquare(pTwoCoordinates[2],pTwoCoordinates[3]), this.getPlayer());
+
         if (newMove == true) {
             this.setPlayer(true);
         }
