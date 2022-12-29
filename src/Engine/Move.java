@@ -26,20 +26,26 @@ public class Move {
     private Square end;
     private Piece piece;
 
-    public Move(Board board, boolean player, Square start, Square end, Game game){
+    public Move(){
+
+    };
+
+    public boolean newMove(Board board, Square start, Square end, boolean player){
         this.start = start;
         this.end = end;
 
         //check to see if square is empty
-        if (getEnd().getPiece() == null && start.getPiece().canMove(board, start, end, game) == true){
+        if (start.getPiece().canMove(board, start, end, player) == true){
             end.setPiece(start.getPiece());
             start.setPiece(null);
             System.out.println("move successful");
+            return true;
+
 
         }else{
             System.out.println("cannot move piece");
+            return false;
         }
-
 
     }
 
@@ -51,8 +57,5 @@ public class Move {
         return this.end;
     }
 
-    public Player getPlayer(){
-        return this.player;
-    }
 
 }

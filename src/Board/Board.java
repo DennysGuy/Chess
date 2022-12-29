@@ -6,7 +6,7 @@ public class Board {
  /*
  What the board will look like
  _|X   0    1   2   3   4   5   6   7
- Y  ====================================
+ Y  ===================================
  0 | [*R][*N][*B][*Q][*K][*B][*N][*R] |
  1 | [*P][*P][*P][*P][*P][*P][*P][*P] |
  2 | [  ][  ][  ][  ][  ][  ][  ][  ] |
@@ -86,12 +86,5 @@ public class Board {
         System.out.println("  ====================================");
     }
 
-    @Override
-    public String toString(){
-
-
-        return "test";
-
-    }
 
 }

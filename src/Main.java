@@ -11,9 +11,11 @@ public class Main {
         Scanner kb = new Scanner(System.in);
         do{
             menu();
+            System.out.print("Enter a choice: ");
             choice = kb.nextInt();
 
         }while(choice < 0);
+
 
         if (choice == 1) {
             clearConsole();

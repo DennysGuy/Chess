@@ -10,9 +10,10 @@ public class Queen extends Piece{
     }
 
     @Override
-    public boolean canMove(Board board, Square start, Square end, Game game) {
+    public boolean canMove(Board board, Square start, Square end, boolean player) {
         return false;
     }
+
 
     @Override
     public String toString(){

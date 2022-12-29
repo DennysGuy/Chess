@@ -1,9 +1,6 @@
 package pieces;
 
 import Board.*;
-import Engine.Game;
-
-import java.util.Objects;
 
 public class Pawn extends Piece{
 
@@ -28,7 +25,7 @@ public class Pawn extends Piece{
 
 
     @Override
-    public boolean canMove(Board board, Square start, Square end, Game game) {
+    public boolean canMove(Board board, Square start, Square end, boolean player) {
         /*
             ~ need to consider both black and white sides
             ~ need to limit pawn from moving backwards
@@ -36,9 +33,8 @@ public class Pawn extends Piece{
 
          */
 
-
         //Just testing something
-        boolean playerOne = game.isPlayerOne();
+        boolean playerOne = player;
         /*
         This is to handle the case where the pawn is in its starting postion.
         This only applies if the end square chosen by either player is +-2 on the y-axis
@@ -46,62 +42,76 @@ public class Pawn extends Piece{
             -Else, the player is black, and they are allowed to move down the y-axis.
         */
 
-        if (playerOne && !getFirstMove() && (start.getY() - 2 == end.getY())) {
-            if (!getFirstMove()) {
-                if (board.getSquare(start.getX(), start.getY() - 1) != null && end.getPiece() != null) {
+        if (playerOne == true && getFirstMove() == false && (start.getY() - 2 == end.getY())) {
+            if (getFirstMove() == false) {
+                if (board.getSquare(start.getX(), start.getY() - 1).getPiece() != null && end.getPiece() != null) {
                     return false;
-                } else {
+                }
+                //in order to make a valid move, we need to ensure that the player is moving a white piece
+                if (start.getPiece().isWhite() == true)
+                {
                     this.setFirstMove(true); //need to change this boolean otherwise pawn can move 2 squares indefinitely
                     return true;
+                }else{
+                    System.out.println("Please choose a valid square");
+                    return false;
                 }
             }
-        } else if (!playerOne && !getFirstMove() && (start.getY() + 2 == end.getY())) {
-            if (board.getSquare(start.getX(), start.getY() + 1) != null && end.getPiece() != null) {
+        } else if (playerOne == false && getFirstMove() == false && (start.getY() + 2 == end.getY())) {
+
+            if (board.getSquare(start.getX(), start.getY() + 1).getPiece() != null && end.getPiece() != null)
+            {
                 return false;
             }
-            else {
+            //in order to make a valid move, we need to ensure that the player is moving a black piece
+            if (start.getPiece().isWhite() == false)
+            {
                 this.setFirstMove(true);
                 return true;
+            }else{
+                System.out.println("Please choose a valid square");
+                return false;
             }
         }
         /*
         This is to handle the case where the pawn can only move one square. Not implementing kill here yet.
         Going to check whether there is a free space in front of them(either black or white).
          */
-        if (playerOne && (start.getY() - 1 == end.getY())) {
+
+        if (playerOne == true && (start.getY() - 1 == end.getY())) {
             if (board.getSquare(start.getX(), start.getY() - 1) != null && end.getPiece() != null) {
                 return false;
-            } else {
+            }
+
+            if (start.getPiece().isWhite() == true)
+            {
                 if (getFirstMove()==false)
                     setFirstMove(true);
                 return true;
+            }else{
+                System.out.println("Please choose a valid square");
+                return false;
             }
+
         } else if (playerOne && (start.getY() + 1 == end.getY())) {
             if (board.getSquare(start.getX(), start.getY() + 1) != null && end.getPiece() != null) {
                 return false;
-            } else {
+            }
+
+            if (start.getPiece().isWhite() == false)
+            {
                 if (getFirstMove() == false)
                     setFirstMove(true);
                 return true;
+            }else{
+                System.out.println("Please choose a valid square");
+                return false;
             }
         }
         //If all else fails here, all other options were invalid, and we just return false.
         return false;
 
-        /*
-        Getting rid of this for the time being.
 
-        if (getHasMoved() == false) {
-            if (board.getSquare(start.getX()+1, start.getY()).getPiece() != null && end.getPiece() != null)
-                return false;
-        }
-        else {
-            if (end.getPiece() != null)
-                return false;
-        }
-
-        return true;
-         */
 
     }
 

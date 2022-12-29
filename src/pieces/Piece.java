@@ -65,7 +65,8 @@ public abstract class Piece {
         movement will be calculated based on starting and ending coordinates given
      */
 
-    public abstract boolean canMove(Board board, Square start, Square end, Game game);
+    public abstract boolean canMove(Board board, Square start, Square end, boolean player);
+
     //default toString which will allow us to display the piece to the user
     @Override
     public String toString(){
