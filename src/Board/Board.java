@@ -5,8 +5,8 @@ public class Board {
     private Square[][] board = new Square[8][8];
  /*
  What the board will look like
- _|X   0    1   2   3   4   5   6   7
- Y  ===================================
+   |   0    1   2   3   4   5   6   7
+   ===================================
  0 | [*R][*N][*B][*Q][*K][*B][*N][*R] |
  1 | [*P][*P][*P][*P][*P][*P][*P][*P] |
  2 | [  ][  ][  ][  ][  ][  ][  ][  ] |

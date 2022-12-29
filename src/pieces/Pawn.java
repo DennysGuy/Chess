@@ -50,7 +50,29 @@ public class Pawn extends Piece{
             }
             //in order to make a valid move, we need to ensure that the player is moving a white piece
             //I removed checking if the start piece is null because of redundancy - it doesn't make sense to check if this square is empty as to get to this point in the code, the start square needs to be occupied with a pawn piece :-)
+             /*
+                    -For the capture, we need to take into account that the square we are moving to is a diagonal square and that the piece is a piece of the opposing team
+                    -ensure that we cannot move backwards
+
+             */
+            //white capture mechanic
+            if(!end.getPiece().isWhite() && start.getPiece().isWhite()){
+                if((start.getY() - end.getY() == 1 || end.getY() - start.getY() == 1) && start.getX() - end.getX() == 1){
+                    return true;
+                }
+                return false;
+            }
+            //black capture mechanic
+            if(end.getPiece().isWhite() && !start.getPiece().isWhite()){
+                if((start.getY() - end.getY() == 1 || end.getY() - start.getY() == 1) && end.getX() - start.getX() == 1){
+                    return true;
+                }
+                return false;
+            }
+
+
             if (end.getPiece() == null && start.getPiece().isWhite() == true) {
+
                 //this code will handle if the pawn hasn't executed its first move yet - effectively giving it another option to advance 2 spots ahead as opposed to 1
                 if (getFirstMove() == false) {
                     /*
