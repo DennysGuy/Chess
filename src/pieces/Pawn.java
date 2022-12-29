@@ -27,22 +27,26 @@ public class Pawn extends Piece{
     @Override
     public boolean canMove(Board board, Square start, Square end, boolean player) {
         /*
-            ~ need to consider both black and white sides
-            ~ need to limit pawn from moving backwards
-            ~ need to consider diagonal spots - if there is no enemy piece in a square diagonal/forward to a pawn, return false
-
-         */
-
-        //Just testing something
-        boolean playerOne = player;
-        /*
         This is to handle the case where the pawn is in its starting postion.
         This only applies if the end square chosen by either player is +-2 on the y-axis
             -If it is player one(white), we let them move up the y-axis.
             -Else, the player is black, and they are allowed to move down the y-axis.
         */
+        // *** NOTE: I split up the code to separate methods so that it will be easier to read and work with *** - one being for the first movement options and one for everything after
+        firstMoveOptions(board, start, end, player);
 
-        if (playerOne == true && getFirstMove() == false && (start.getY() - 2 == end.getY())) {
+        /*
+        This is to handle the case where the pawn can only move one square. Not implementing kill here yet.
+        Going to check whether there is a free space in front of them(either black or white).
+         */
+        moveOptions(board, start, end, player);
+
+        return false;
+
+    }
+
+    public boolean firstMoveOptions(Board board, Square start, Square end, boolean player){
+        if (player == true && getFirstMove() == false && (start.getY() - 2 == end.getY())) {
             if (getFirstMove() == false) {
                 if (board.getSquare(start.getX(), start.getY() - 1).getPiece() != null && end.getPiece() != null) {
                     return false;
@@ -57,7 +61,7 @@ public class Pawn extends Piece{
                     return false;
                 }
             }
-        } else if (playerOne == false && getFirstMove() == false && (start.getY() + 2 == end.getY())) {
+        } else if (player == false && getFirstMove() == false && (start.getY() + 2 == end.getY())) {
 
             if (board.getSquare(start.getX(), start.getY() + 1).getPiece() != null && end.getPiece() != null)
             {
@@ -73,12 +77,12 @@ public class Pawn extends Piece{
                 return false;
             }
         }
-        /*
-        This is to handle the case where the pawn can only move one square. Not implementing kill here yet.
-        Going to check whether there is a free space in front of them(either black or white).
-         */
+        return false;
 
-        if (playerOne == true && (start.getY() - 1 == end.getY())) {
+    }
+
+    public boolean moveOptions(Board board, Square start, Square end, boolean player){
+        if (player == true && (start.getY() - 1 == end.getY())) {
             if (board.getSquare(start.getX(), start.getY() - 1) != null && end.getPiece() != null) {
                 return false;
             }
@@ -93,7 +97,7 @@ public class Pawn extends Piece{
                 return false;
             }
 
-        } else if (playerOne && (start.getY() + 1 == end.getY())) {
+        } else if (player && (start.getY() + 1 == end.getY())) {
             if (board.getSquare(start.getX(), start.getY() + 1) != null && end.getPiece() != null) {
                 return false;
             }
@@ -110,9 +114,6 @@ public class Pawn extends Piece{
         }
         //If all else fails here, all other options were invalid, and we just return false.
         return false;
-
-
-
     }
 
     @Override
