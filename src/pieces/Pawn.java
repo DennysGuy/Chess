@@ -57,13 +57,13 @@ public class Pawn extends Piece{
                     code reads like this: if abs of start.x - end.x == 2 and start.y - end.y  == 0 && the square in front of piece is null OR if abs of start.x - end.x == 1 && abs of start.y and end.y == 0 --> return true
                     we need to consider the X change and Y change, as I was testing, you needed to consider both axis as when I only compare on X, I was only able to move the distance, but I was able to move to any square on the desired row
                      */
-                    if (start.getX() - end.getX() == 2 && start.getY() - end.getY() == 0 && board.getSquare(start.getX() - 1, start.getY()).getPiece() == null || start.getX() - end.getX() == 1 && Math.abs(start.getY() - end.getY()) == 0 && board.getSquare(start.getX() - 1, start.getY()).getPiece() == null) {
+                    if (start.getX() - end.getX() == 2 && start.getY() - end.getY() == 0 && board.getSquare(start.getX() - 1, start.getY()).getPiece() == null || start.getX() - end.getX() == 1 && start.getY() - end.getY() == 0) {
                         this.setFirstMove(true); //need to change this boolean otherwise pawn can move 2 squares indefinitely
                         return true;
                     }
                     return false;
                 } else {
-                    if (Math.abs(start.getX() - end.getX()) == 1) {
+                    if (start.getX() - end.getX() == 1) {
                         return true;
                     }
                     return false;
@@ -82,7 +82,7 @@ public class Pawn extends Piece{
             if (end.getPiece() == null && start.getPiece().isWhite() == false) {
 
                 if (getFirstMove() == false) {
-                    if (end.getX() - start.getX() == 2 && end.getY() - start.getY() == 0 && board.getSquare(start.getX() + 1, start.getY()).getPiece() == null || end.getX() - start.getX() == 1 && start.getY() - end.getY() == 0 && board.getSquare(start.getX() + 1, start.getY()).getPiece() == null) {
+                    if (end.getX() - start.getX() == 2 && end.getY() - start.getY() == 0 && board.getSquare(start.getX() + 1, start.getY()).getPiece() == null || end.getX() - start.getX() == 1 && start.getY() - end.getY() == 0) {
                         this.setFirstMove(true); //need to change this boolean otherwise pawn can move 2 squares indefinitely
                         return true;
                     }
