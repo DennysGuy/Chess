@@ -38,12 +38,12 @@ public class Move {
         if (start.getPiece().canMove(board, start, end, player) == true){
             end.setPiece(start.getPiece());
             start.setPiece(null);
-            System.out.println("move successful");
+            System.out.println("\n***Move Successful!***");
             return true;
 
 
         }else{
-            System.out.println("cannot move piece");
+            System.out.println("\n***Invalid Move, Try Again!***");
             return false;
         }
 
