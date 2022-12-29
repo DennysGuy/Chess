@@ -46,6 +46,7 @@ public class Pawn extends Piece{
     }
 
     public boolean firstMoveOptions(Board board, Square start, Square end, boolean player){
+
         if (player == true && getFirstMove() == false && (start.getY() - 2 == end.getY())) {
             if (getFirstMove() == false) {
                 if (board.getSquare(start.getX(), start.getY() - 1).getPiece() != null && end.getPiece() != null) {
@@ -82,6 +83,7 @@ public class Pawn extends Piece{
     }
 
     public boolean moveOptions(Board board, Square start, Square end, boolean player){
+
         if (player == true && (start.getY() - 1 == end.getY())) {
             if (board.getSquare(start.getX(), start.getY() - 1) != null && end.getPiece() != null) {
                 return false;
