@@ -56,14 +56,14 @@ public class Pawn extends Piece{
 
              */
             //white capture mechanic
-            if(!end.getPiece().isWhite() && start.getPiece().isWhite()){
+            if(end.getPiece() != null && !end.getPiece().isWhite() && start.getPiece().isWhite()){
                 if((start.getY() - end.getY() == 1 || end.getY() - start.getY() == 1) && start.getX() - end.getX() == 1){
                     return true;
                 }
                 return false;
             }
             //black capture mechanic
-            if(end.getPiece().isWhite() && !start.getPiece().isWhite()){
+            if(end.getPiece() != null && end.getPiece().isWhite() && !start.getPiece().isWhite()){
                 if((start.getY() - end.getY() == 1 || end.getY() - start.getY() == 1) && end.getX() - start.getX() == 1){
                     return true;
                 }

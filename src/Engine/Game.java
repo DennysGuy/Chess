@@ -1,7 +1,7 @@
 package Engine;
 import Board.*;
 import pieces.*;
-import StringUtil
+import java.util.*;
 
 import java.util.Scanner;
 
@@ -35,7 +35,9 @@ public class Game {
     }
 
     public void playerOneMove(Scanner inp, Board board){
-        int[] pOneCoordinates  = new int[4];
+        String coordinates;
+        String[] startCoordinates;
+        String[] endCoordinates;
                 /*
                 ~ get coordinates for player's starting square and players ending square
                 ~ insert coordinates into new squares which will be placed into a new move object
@@ -43,13 +45,19 @@ public class Game {
                 */
         System.out.println("Player One's Turn!");
 
+        System.out.println("Enter row and column for desired piece (separate with a ',' ex: 4,3): ");
+        coordinates = inp.nextLine();
 
+        startCoordinates = coordinates.split(",");
 
+        System.out.println("Enter row and column for square you want to move to (separate with a ',' ex: 4,3): ");
+        coordinates = inp.nextLine();
 
+        endCoordinates = coordinates.split(",");
 
         Move move = new Move();
 
-        boolean newMove = move.newMove(board, board.getSquare(pOneCoordinates[0],pOneCoordinates[1]), board.getSquare(pOneCoordinates[2],pOneCoordinates[3]), this.getPlayer());
+        boolean newMove = move.newMove(board, board.getSquare(Integer.parseInt(startCoordinates[0]),Integer.parseInt(startCoordinates[1])), board.getSquare(Integer.parseInt(endCoordinates[0]),Integer.parseInt(endCoordinates[1])), this.getPlayer());
 
         if (newMove == true) {
             this.setPlayer(false);
@@ -57,24 +65,30 @@ public class Game {
     }
 
     public void playerTwoMove(Scanner inp, Board board){
-        int[] pTwoCoordinates  = new int[4];
-
+        String coordinates;
+        String[] startCoordinates;
+        String[] endCoordinates;
+                /*
+                ~ get coordinates for player's starting square and players ending square
+                ~ insert coordinates into new squares which will be placed into a new move object
+                ~ end player turn
+                */
         System.out.println("Player Two's Turn!");
 
-        System.out.println("\nEnter X coordinate for the piece You want to move: ");
-        pTwoCoordinates[0] = inp.nextInt();
+        System.out.println("Enter row and column for desired piece (separate with a ',' ex: 4,3): ");
+        coordinates = inp.nextLine();
 
-        System.out.println("\nEnter Y coordinate for the piece you want to move: ");
-        pTwoCoordinates[1] = inp.nextInt();
+        startCoordinates = coordinates.split(",");
 
-        System.out.println("\nEnter X coordinate for the square you want to move to: ");
-        pTwoCoordinates[2] = inp.nextInt();
+        System.out.println("Enter row and column for square you want to move to (separate with a ',' ex: 4,3): ");
+        coordinates = inp.nextLine();
 
-        System.out.println("\nEnter Y coordinate for the square you want to move to: ");
-        pTwoCoordinates[3] = inp.nextInt();
+        endCoordinates = coordinates.split(",");
 
         Move move = new Move();
-        boolean newMove = move.newMove(board, board.getSquare(pTwoCoordinates[0],pTwoCoordinates[1]), board.getSquare(pTwoCoordinates[2],pTwoCoordinates[3]), this.getPlayer());
+
+        boolean newMove = move.newMove(board, board.getSquare(Integer.parseInt(startCoordinates[0]),Integer.parseInt(startCoordinates[1])), board.getSquare(Integer.parseInt(endCoordinates[0]),Integer.parseInt(endCoordinates[1])), this.getPlayer());
+
 
         if (newMove == true) {
             this.setPlayer(true);
