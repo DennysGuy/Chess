@@ -7,18 +7,18 @@ import java.util.Objects;
 
 public class Pawn extends Piece{
 
-    private boolean hasMoved = false;
+    private boolean firstMove = false;
     public Pawn(boolean white){
         super(white);
     }
 
 
-    public boolean getHasMoved(){
-        return hasMoved;
+    public boolean getFirstMove(){
+        return firstMove;
     }
 
-    public void setHasMoved(boolean moved){
-        hasMoved = moved;
+    public void setFirstMove(boolean moved){
+        firstMove = moved;
     }
 
     @Override
@@ -46,18 +46,21 @@ public class Pawn extends Piece{
             -Else, the player is black, and they are allowed to move down the y-axis.
         */
 
-        if (playerOne && !getHasMoved() && (start.getY() - 2 == end.getY())) {
-            if (!getHasMoved()) {
+        if (playerOne && !getFirstMove() && (start.getY() - 2 == end.getY())) {
+            if (!getFirstMove()) {
                 if (board.getSquare(start.getX(), start.getY() - 1) != null && end.getPiece() != null) {
                     return false;
                 } else {
+                    this.setFirstMove(true); //need to change this boolean otherwise pawn can move 2 squares indefinitely
                     return true;
                 }
             }
-        } else if (!playerOne && !getHasMoved() && (start.getY() + 2 == end.getY())) {
+        } else if (!playerOne && !getFirstMove() && (start.getY() + 2 == end.getY())) {
             if (board.getSquare(start.getX(), start.getY() + 1) != null && end.getPiece() != null) {
                 return false;
-            } else {
+            }
+            else {
+                this.setFirstMove(true);
                 return true;
             }
         }
@@ -69,12 +72,16 @@ public class Pawn extends Piece{
             if (board.getSquare(start.getX(), start.getY() - 1) != null && end.getPiece() != null) {
                 return false;
             } else {
+                if (getFirstMove()==false)
+                    setFirstMove(true);
                 return true;
             }
         } else if (playerOne && (start.getY() + 1 == end.getY())) {
             if (board.getSquare(start.getX(), start.getY() + 1) != null && end.getPiece() != null) {
                 return false;
             } else {
+                if (getFirstMove() == false)
+                    setFirstMove(true);
                 return true;
             }
         }
