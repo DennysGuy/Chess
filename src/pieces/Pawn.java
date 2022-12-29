@@ -82,7 +82,7 @@ public class Pawn extends Piece{
             if (end.getPiece() == null && start.getPiece().isWhite() == false) {
 
                 if (getFirstMove() == false) {
-                    if ((Math.abs(end.getX() - start.getX()) == 2 && Math.abs(end.getY() - start.getY()) == 0 && board.getSquare(start.getX() + 1, start.getY()).getPiece() == null || end.getX() - start.getX() == 1) && start.getY() - end.getY() == 0 && board.getSquare(start.getX() + 1, start.getY()).getPiece() == null) {
+                    if (end.getX() - start.getX() == 2 && end.getY() - start.getY() == 0 && board.getSquare(start.getX() + 1, start.getY()).getPiece() == null || end.getX() - start.getX() == 1 && start.getY() - end.getY() == 0 && board.getSquare(start.getX() + 1, start.getY()).getPiece() == null) {
                         this.setFirstMove(true); //need to change this boolean otherwise pawn can move 2 squares indefinitely
                         return true;
                     }
