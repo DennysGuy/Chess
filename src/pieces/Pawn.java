@@ -88,7 +88,7 @@ public class Pawn extends Piece{
                     }
                     return false;
                 } else {
-                    if (Math.abs(start.getX() - end.getX()) == 1) {
+                    if (Math.abs(end.getX() - start.getX()) == 1) {
                         return true;
                     }
                     return false;
