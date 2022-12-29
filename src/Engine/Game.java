@@ -42,17 +42,7 @@ public class Game {
                 */
         System.out.println("Player One's Turn!");
 
-        System.out.println("\nEnter X coordinate for the piece You want to move: ");
-        pOneCoordinates[0] = inp.nextInt();
 
-        System.out.println("\nEnter Y coordinate for the piece you want to move: ");
-        pOneCoordinates[1] = inp.nextInt();
-
-        System.out.println("\nEnter X coordinate for the square you want to move to: ");
-        pOneCoordinates[2] = inp.nextInt();
-
-        System.out.println("\nEnter Y coordinate for the square you want to move to: ");
-        pOneCoordinates[3] = inp.nextInt();
 
         Move move = new Move();
 
