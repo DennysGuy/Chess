@@ -45,9 +45,12 @@ public class Pawn extends Piece{
     public boolean moveOptions(Board board, Square start, Square end, boolean player) {
         // movement code for player one (DOES NOT INCLUDE CAPTURING LOGIC)
         if (player == true) {
+            /*
             if (start.getPiece() != null && end.getPiece() != null) {
                 return false;
             }
+            */
+
             //in order to make a valid move, we need to ensure that the player is moving a white piece
             //I removed checking if the start piece is null because of redundancy - it doesn't make sense to check if this square is empty as to get to this point in the code, the start square needs to be occupied with a pawn piece :-)
              /*
@@ -56,7 +59,7 @@ public class Pawn extends Piece{
 
              */
             //white capture mechanic
-            if(end.getPiece() != null && !end.getPiece().isWhite() && start.getPiece().isWhite()){
+            if(end.getPiece() != null && end.getPiece().isWhite() == false && start.getPiece().isWhite() == true){
                 if((start.getY() - end.getY() == 1 || end.getY() - start.getY() == 1) && start.getX() - end.getX() == 1){
                     return true;
                 }
@@ -97,9 +100,12 @@ public class Pawn extends Piece{
         }
         else {
             //Code that handles Player 2
+            /*
             if (start.getPiece() != null && end.getPiece() != null) {
                 return false;
             }
+            */
+
             //we can move this piece if the piece is not a white piece
             if (end.getPiece() == null && start.getPiece().isWhite() == false) {
 

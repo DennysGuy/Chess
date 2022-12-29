@@ -45,12 +45,12 @@ public class Game {
                 */
         System.out.println("Player One's Turn!");
 
-        System.out.println("Enter row and column for desired piece (separate with a ',' ex: 4,3): ");
+        System.out.println("Enter row and column for desired piece (separate with a ',' i.e.: row, column): ");
         coordinates = inp.nextLine();
 
         startCoordinates = coordinates.split(",");
 
-        System.out.println("Enter row and column for square you want to move to (separate with a ',' ex: 4,3): ");
+        System.out.println("Enter row and column for square you want to move to (separate with a ',' i.e: row, column): ");
         coordinates = inp.nextLine();
 
         endCoordinates = coordinates.split(",");
