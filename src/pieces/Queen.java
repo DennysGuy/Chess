@@ -24,7 +24,7 @@ public class Queen extends Piece{
         int endCol = end.getY();
 
         //Moving up on the board
-        if(start.getX() < end.getX()){
+        if(start.getX() > end.getX()){
             //Moving up & left on the board
             if(start.getY() > end.getY()){
                 // check if the queen is moving diagonally
@@ -59,7 +59,7 @@ public class Queen extends Piece{
 
 
         //Moving down on the board.
-        if(start.getX() > end.getX()) {
+        if(start.getX() < end.getX()) {
             //Moving down & left on the board
             if (start.getY() > end.getY()) {
                 // check if the queen is moving diagonally
@@ -167,8 +167,10 @@ public class Queen extends Piece{
 
 
         if (startRow == endRow) {
-            // check the squares between the start and end columns
+            // check the squares between the start and end columns. Horizontal movements
             for (int col = Math.min(startCol, endCol) + 1; col < Math.max(startCol, endCol); col++) {
+                //Check before it throws a null value and breaks the program.
+                if (board.getSquare(startRow, col).getPiece() == null) continue;
                 //This is for white
                 if ((board.getSquare(startRow, col).getPiece().isWhite()) && start.getPiece().isWhite()) {
                     return false;
@@ -183,12 +185,15 @@ public class Queen extends Piece{
 
 
         if (startCol == endCol) {
-            // check the squares between the start and end rows
+            // check the squares between the start and end rows. Vertical movements
             for (int row = Math.min(startRow, endRow) + 1; row < Math.max(startRow, endRow); row++) {
+                //Check before it throws a null value and breaks the program.
+                if (board.getSquare(row, startCol).getPiece() == null) continue;
                 //This is for white.
                 if ((board.getSquare(row, startCol).getPiece().isWhite()) && start.getPiece().isWhite()){
                     return false;
                 }
+                //This is for black.
                 if (!(board.getSquare(row, startCol).getPiece().isWhite()) && !start.getPiece().isWhite()){
                     return false;
                 }

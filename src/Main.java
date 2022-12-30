@@ -33,7 +33,7 @@ public class Main {
     }
 
     public static void menu(){
-        
+
         String menu = "┌-----------------------┐\n"+
                       "|_________CHESS_________|\n"+
                       "|  By Matt M & Tanner S |\n"+
