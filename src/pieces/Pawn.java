@@ -32,17 +32,6 @@ public class Pawn extends Piece{
             -If it is player one(white), we let them move up the y-axis.
             -Else, the player is black, and they are allowed to move down the y-axis.
         */
-        // *** NOTE: I split up the code to separate methods so that it will be easier to read and work with *** - one being for the first movement options and one for everything after
-
-        /*
-        This is to handle the case where the pawn can only move one square. Not implementing kill here yet.
-        Going to check whether there is a free space in front of them(either black or white).
-         */
-        boolean newMove = moveOptions(board, start, end, player);
-        return newMove;
-    }
-
-    public boolean moveOptions(Board board, Square start, Square end, boolean player) {
         // movement code for player one (DOES NOT INCLUDE CAPTURING LOGIC)
         if (player == true) {
             /*
@@ -65,14 +54,6 @@ public class Pawn extends Piece{
                 }
                 return false;
             }
-            //black capture mechanic
-            if(end.getPiece() != null && end.getPiece().isWhite() && !start.getPiece().isWhite()){
-                if((start.getY() - end.getY() == 1 || end.getY() - start.getY() == 1) && end.getX() - start.getX() == 1){
-                    return true;
-                }
-                return false;
-            }
-
 
             if (end.getPiece() == null && start.getPiece().isWhite() == true) {
 
@@ -105,6 +86,13 @@ public class Pawn extends Piece{
                 return false;
             }
             */
+            //black capture mechanic
+            if(end.getPiece() != null && end.getPiece().isWhite() && !start.getPiece().isWhite()){
+                if((start.getY() - end.getY() == 1 || end.getY() - start.getY() == 1) && end.getX() - start.getX() == 1){
+                    return true;
+                }
+                return false;
+            }
 
             //we can move this piece if the piece is not a white piece
             if (end.getPiece() == null && start.getPiece().isWhite() == false) {
