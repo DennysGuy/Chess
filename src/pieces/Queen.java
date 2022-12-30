@@ -202,8 +202,32 @@ public class Queen extends Piece{
         }
 
 
-        //Need something here for the diagonal checking...
+        /*
+        This is for diagonal movement.
+        Work in progress and requires tons more additional testing.
+        Currently working as it stands, a little surprising how well that went.
+         */
+        //Checking for diagonal movement
+        if (Math.abs(endRow - startRow) == Math.abs(endCol - startCol)) {
+            // diagonal movement calculation for direction of movement.
+            int rowStep = (endRow - startRow) / Math.abs(endRow - startRow);
+            int colStep = (endCol - startCol) / Math.abs(endCol - startCol);
 
+            // check the squares between the start and end squares
+            for (int row = startRow + rowStep, col = startCol + colStep; row != endRow; row += rowStep, col += colStep) {
+                //Check before it throws a null value and breaks the program.
+                if (board.getSquare(row, col).getPiece() == null) continue;
+                //This is for white.
+                if ((board.getSquare(row, col).getPiece().isWhite()) && start.getPiece().isWhite()) {
+                    return false;
+                }
+                //This is for black.
+                if (!(board.getSquare(row, col).getPiece().isWhite()) && !start.getPiece().isWhite()) {
+                    return false;
+                }
+            }
+            return true;
+        }
 
         return false;
     }
