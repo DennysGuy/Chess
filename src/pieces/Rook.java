@@ -48,7 +48,7 @@ public class Rook extends Piece{
                     return true;
                 }
             }
-                //horizontal movement
+            //horizontal movement
             if (start.getX() == end.getX() && start.getPiece().isWhite() == true) {
                 if (end.getPiece() == null || end.getPiece().isWhite() == false) {
                     //moving to the right on row
