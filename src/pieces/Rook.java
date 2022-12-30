@@ -53,6 +53,7 @@ public class Rook extends Piece{
                 if (end.getPiece() == null || end.getPiece().isWhite() == false) {
                     //moving to the right on row
                     if (start.getY() < end.getY()) {
+                        //if a piece is occupying a square in between starting square and destination, return false as a rook cannot jump over pieces
                         for (int i = start.getY() + 1; i <= end.getY(); i++) {
                             if (board.getSquare(start.getX(), i).getPiece() != null)
                                 return false;
@@ -90,7 +91,7 @@ public class Rook extends Piece{
                     return true;
                 }
             }
-                //horizontal movement
+            //horizontal movement
             if (start.getX() == end.getX() && start.getPiece().isWhite() == false) {
                 if (end.getPiece() == null || end.getPiece().isWhite() == true) {
                     //moving to the right on row
