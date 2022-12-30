@@ -33,12 +33,17 @@ public class Main {
     }
 
     public static void menu(){
-        System.out.println("               ~CHESS~");
-        System.out.println("        By Tanner and Matt");
-        System.out.println("====================================");
-        System.out.println("        1. Start a new game");
-        System.out.println("        2. How to Play");
-        System.out.println("        3. Exit");
+        
+        String menu = "┌-----------------------┐\n"+
+                      "|_________CHESS_________|\n"+
+                      "|  By Matt M & Tanner S |\n"+
+                      "|-----------------------|\n"+
+                      "| 1. Start a new game   |\n"+
+                      "| 2. How to play        |\n"+
+                      "| 3. Exit               |\n"+
+                      "└-----------------------┘\n";
+        System.out.print(menu);
+
     }
 
     public final static void clearConsole()
