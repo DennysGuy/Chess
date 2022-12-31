@@ -71,7 +71,6 @@ public abstract class Piece {
         for (int i = startRow + 1; i <= endRow; i++){
             if (board.getSquare(i,start.getY()).getPiece() != null)
                 return false;
-
         }
         return true;
     }
