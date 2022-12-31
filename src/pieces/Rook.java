@@ -44,7 +44,6 @@ public class Rook extends Piece{
                         validMove = verticalMovement(start, startCol, endCol, board);
                     }
             }
-            return validMove;
 
         } else { //player 2 movement
 
@@ -56,8 +55,8 @@ public class Rook extends Piece{
                         validMove = verticalMovement(start, startCol, endCol, board);
                     }
             }
-            return validMove;
         }
+        return validMove;
     }
 
 
