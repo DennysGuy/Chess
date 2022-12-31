@@ -14,9 +14,6 @@ public abstract class Piece {
     //gives the piece a name
 
 
-    public Piece(){}
-
-
     public Piece(final boolean white){
         this.setWhiteStatus(white);
     }
