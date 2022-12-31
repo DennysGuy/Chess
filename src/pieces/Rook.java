@@ -52,13 +52,11 @@ public class Rook extends Piece{
         boolean validMove = false;
 
         if (player == true && start.getPiece().isWhite() == true) { //player one movement
-
             if (end.getPiece() == null || end.getPiece().isWhite() == false) {
                     validMove = rookMovement(start,end,startRow,endRow,startCol,endCol,board,validMove);
             }
 
         } else { //player 2 movement
-
             if (end.getPiece() == null || end.getPiece().isWhite() == true) {
                     validMove = rookMovement(start,end,startRow,endRow,startCol,endCol,board,validMove);
             }
