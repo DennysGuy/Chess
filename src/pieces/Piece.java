@@ -65,7 +65,7 @@ public abstract class Piece {
     public abstract boolean canMove(Board board, Square start, Square end, boolean player);
     /*
     generic movement check methods that handles horizontal and vertical movement for rook and queen
-        ~ startRow and endRow & startCol and endCol MUST be variables that check min and max between starting row - ending row, and starting column - ending column - otherwise methods will not work
+        ~ parameters startRow and endRow & parameters startCol and endCol MUST be variables that check min and max between starting row - ending row, and starting column - ending column - otherwise methods will not work
         ~ i.e.: int startRow = Math.min(start.getX(),end.getX()) & int endRow = Math.max(start.getX(),end.getX())
     */
 
