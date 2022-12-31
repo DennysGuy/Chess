@@ -109,10 +109,8 @@ public class Pawn extends Piece{
                     }
                     return false;
                 }
-            } else {
-                System.out.println("Please choose a valid square");
-                return false;
             }
+            return false;
         }
 
     }
