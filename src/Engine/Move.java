@@ -47,6 +47,8 @@ public class Move {
             return false;
         }
 
+
+
     }
 
     public Square getStart(){
