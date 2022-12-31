@@ -79,7 +79,7 @@ public class King extends Piece{
     }
 
     public boolean kingMovement(int destX, int destY){
-        if ((destX - destY == 1) || (destX * destY == 1)) {
+        if ((Math.abs(destX - destY) == 1) || (destX * destY == 1)) {
             return true;
         }
 
