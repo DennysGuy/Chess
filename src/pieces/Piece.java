@@ -65,6 +65,11 @@ public abstract class Piece {
         movement will be calculated based on starting and ending coordinates given
      */
 
+    /*
+    generic movement check methods that handles horizontal and vertical movement for rook and queen
+        ~ startRow and endRow MUST be variables that check min and max between starting row - ending row, and starting column - ending column - otherwise methods will not work
+        ~ i.e.: int startRow = Math.min(start.getX(),end.getX()) & int endRow = Math.max(start.getX(),end.getX())
+    */
 
     public boolean horizontalMovement( Square start, int startRow, int endRow, Board board){
         //horizontal movement
