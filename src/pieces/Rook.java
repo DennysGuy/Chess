@@ -55,10 +55,9 @@ public class Rook extends Piece{
                     if (start.getY() == end.getY()){
                         validMove = verticalMovement(start, startCol, endCol, board);
                     }
-                return validMove;
             }
+            return validMove;
         }
-        return false;
     }
 
 
