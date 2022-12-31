@@ -41,14 +41,12 @@ public class Rook extends Piece{
                     if (start.getX() == end.getX()) {
                         validMove = horizontalMovement(start, startRow, endRow, board);
                     }
-
                     if (start.getY() == end.getY()){
                         validMove = verticalMovement(start, startCol, endCol, board);
                     }
                 }
                 return validMove;
             }
-            return false;
         } else { //player 2 movement
             //vertical movement
             if (start.getPiece().isWhite() == false) {
@@ -62,8 +60,8 @@ public class Rook extends Piece{
                 }
                 return validMove;
             }
-            return false;
         }
+        return false;
     }
 
     public boolean horizontalMovement( Square start, int startRow, int endRow, Board board){
