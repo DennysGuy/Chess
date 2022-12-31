@@ -11,8 +11,11 @@ public abstract class Piece {
     private boolean white;
     //this will determine if the piece is on the board or not
     private boolean killed = false;
-    //check if piece is king
+    //determine if piece is king
     private boolean isKing = false;
+    //determine if piece has made first move
+    private boolean firstMove = false;
+
 
     public Piece(final boolean white){
         this.setWhiteStatus(white);
@@ -58,7 +61,6 @@ public abstract class Piece {
         this.killed = status;
     }
 
-
     /*
         this will be the movement calculation
         @param board  - insert the board
@@ -93,6 +95,15 @@ public abstract class Piece {
         return true;
     }
 
+    //getters
+    public boolean getFirstMove(){
+        return this.firstMove;
+    }
+
+    //setters
+    public void setFirstMove(boolean firstMove){
+        this.firstMove = firstMove;
+    }
 
 
     //default toString which will allow us to display the piece to the user

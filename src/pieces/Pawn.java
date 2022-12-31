@@ -6,33 +6,11 @@ import java.util.Objects;
 
 public class Pawn extends Piece{
 
-    private boolean firstMove = false;
+
     public Pawn(boolean white){
         super(white);
     }
 
-
-    public boolean getFirstMove(){
-        return firstMove;
-    }
-
-    public void setFirstMove(boolean moved){
-        firstMove = moved;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        Pawn pawn = (Pawn) o;
-        return firstMove == pawn.firstMove;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), firstMove);
-    }
 
     @Override
     public boolean canMove(Board board, Square start, Square end, boolean player) {

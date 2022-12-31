@@ -9,6 +9,7 @@ public class Rook extends Piece{
 
     private boolean castling;
 
+
     public Rook(boolean white){
         super(white);
     }
@@ -53,24 +54,29 @@ public class Rook extends Piece{
         if (player == true && start.getPiece().isWhite() == true) { //player one movement
 
             if (end.getPiece() == null || end.getPiece().isWhite() == false) {
-                    if (start.getX() == end.getX()) {
-                        validMove = horizontalMovement(start, startRow, endRow, board);
-                    }
-                    if (start.getY() == end.getY()){
-                        validMove = verticalMovement(start, startCol, endCol, board);
-                    }
+                    validMove = rookMovement(start,end,startRow,endRow,startCol,endCol,board,validMove);
             }
 
         } else { //player 2 movement
 
             if (end.getPiece() == null || end.getPiece().isWhite() == true) {
-                    if (start.getX() == end.getX()) {
-                        validMove = horizontalMovement(start, startRow, endRow, board);
-                    }
-                    if (start.getY() == end.getY()){
-                        validMove = verticalMovement(start, startCol, endCol, board);
-                    }
+                    validMove = rookMovement(start,end,startRow,endRow,startCol,endCol,board,validMove);
             }
+        }
+        return validMove;
+    }
+
+    public boolean rookMovement(Square start, Square end, int startRow, int endRow, int startCol, int endCol,Board board, boolean validMove){
+        if (start.getX() == end.getX()) {
+            validMove = horizontalMovement(start, startRow, endRow, board);
+            if (validMove == true && this.getFirstMove() == false)
+                this.setFirstMove(true);
+
+        }
+        if (start.getY() == end.getY()){
+            validMove = verticalMovement(start, startCol, endCol, board);
+            if (validMove == true && this.getFirstMove() == false)
+                this.setFirstMove(true);
         }
         return validMove;
     }
