@@ -68,7 +68,7 @@ public abstract class Piece {
 
     public boolean horizontalMovement( Square start, int startRow, int endRow, Board board){
         //horizontal movement
-        for (int i = Math.min(startRow,endRow) + 1; i <= Math.max(startRow,endRow); i++){
+        for (int i = startRow + 1; i <= endRow; i++){
             if (board.getSquare(i,start.getY()).getPiece() != null)
                 return false;
 
@@ -78,7 +78,7 @@ public abstract class Piece {
 
     public boolean verticalMovement(Square start, int startCol, int endCol, Board board){
         //vertical movement
-        for (int i = Math.min(startCol,endCol) + 1; i < Math.max(startCol,endCol);i++){
+        for (int i = startCol + 1; i < endCol;i++){
             if (board.getSquare(start.getX(),i).getPiece() != null)
                 return false;
         }
