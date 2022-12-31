@@ -11,25 +11,24 @@ public abstract class Piece {
     private boolean white;
     //this will determine if the piece is on the board or not
     private boolean killed = false;
-    //gives the piece a name
-
+    //check if piece is king
+    private boolean isKing = false;
 
     public Piece(final boolean white){
         this.setWhiteStatus(white);
     }
 
     @Override
-    public boolean equals(Object o){
+    public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Piece piece = (Piece) o;
-        return white == piece.white && killed == piece.killed;
-
+        return white == piece.white && killed == piece.killed && isKing == piece.isKing;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(white, killed);
+        return Objects.hash(white, killed, isKing);
     }
 
     //getters
@@ -41,8 +40,15 @@ public abstract class Piece {
         return this.killed;
     }
 
-    //setters
+    public boolean getIsKing(){
+        return this.isKing;
+    }
 
+    //setters
+    public void setIsKing(boolean isKing){
+        this.isKing = isKing;
+
+    }
 
     public void setWhiteStatus(boolean status){
         this.white = status;

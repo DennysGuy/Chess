@@ -25,6 +25,19 @@ public class Game {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Game game = (Game) o;
+        return playerOne == game.playerOne && state == game.state;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(state, playerOne);
+    }
+
     //Getter to check player
     public void setPlayer(boolean player){
         this.playerOne = player;

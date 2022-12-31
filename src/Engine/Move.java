@@ -3,6 +3,8 @@ package Engine;
 import Board.*;
 import pieces.*;
 
+import java.util.Objects;
+
    /*
     1. Player will input an x and y coordinate for the piece they want to move.
     2. Check the square for a piece.
@@ -28,7 +30,20 @@ public class Move {
 
     public Move(){
 
-    };
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Move move = (Move) o;
+        return Objects.equals(start, move.start) && Objects.equals(end, move.end) && Objects.equals(piece, move.piece);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(start, end, piece);
+    }
 
     public boolean newMove(Board board, Square start, Square end, boolean player){
         this.start = start;

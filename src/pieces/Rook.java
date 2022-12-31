@@ -3,6 +3,8 @@ package pieces;
 import Board.*;
 import Engine.*;
 
+import java.util.Objects;
+
 public class Rook extends Piece{
 
     private boolean castling;
@@ -17,6 +19,20 @@ public class Rook extends Piece{
 
     public void setCastling(boolean castle){
         this.castling = castle;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Rook rook = (Rook) o;
+        return castling == rook.castling;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), castling);
     }
 
     @Override

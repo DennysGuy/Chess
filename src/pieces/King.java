@@ -3,11 +3,28 @@ package pieces;
 import Board.*;
 import Engine.*;
 
+import java.util.Objects;
+
 public class King extends Piece{
     private boolean castling = false;
 
     public King(boolean white){
         super(white);
+        setIsKing(true);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        King king = (King) o;
+        return castling == king.castling;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), castling);
     }
 
     @Override
