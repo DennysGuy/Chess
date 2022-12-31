@@ -34,8 +34,8 @@ public class Rook extends Piece{
 
         boolean validMove = false;
 
-        if (player == true) { //player one movement
-            if (start.getPiece().isWhite() == true) {
+        if (player == true && start.getPiece().isWhite() == true) { //player one movement
+
                 if (end.getPiece() == null || end.getPiece().isWhite() == false) {
                     if (start.getX() == end.getX()) {
                         validMove = horizontalMovement(start, startRow, endRow, board);
@@ -45,9 +45,8 @@ public class Rook extends Piece{
                     }
                 }
                 return validMove;
-            }
+
         } else { //player 2 movement
-            if (start.getPiece().isWhite() == false) {
                 if (end.getPiece() == null || end.getPiece().isWhite() == true) {
                     if (start.getX() == end.getX()) {
                         validMove = horizontalMovement(start, startRow, endRow, board);
@@ -55,9 +54,8 @@ public class Rook extends Piece{
                     if (start.getY() == end.getY()){
                         validMove = verticalMovement(start, startCol, endCol, board);
                     }
-                }
                 return validMove;
-            }
+                }
         }
         return false;
     }
