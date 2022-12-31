@@ -26,93 +26,67 @@ public class Rook extends Piece{
         ~The Rook does not have the capability to jump over pieces
         ~The
          */
+        int startRow = Math.min(start.getX(),end.getX());
+        int startCol = Math.min(start.getY(),end.getY());
+
+        int endRow   = Math.max(start.getX(),end.getX());
+        int endCol   = Math.max(start.getY(),end.getY());
+
+        boolean validMove = false;
+
         //White movement
         if (player == true) { //player one movement
-            //vertical movement
-            if (start.getY() == end.getY() && start.getPiece().isWhite() == true) {
+            if (start.getPiece().isWhite() == true) {
                 if (end.getPiece() == null || end.getPiece().isWhite() == false) {
-                    //moving up on column
-                    if (start.getX() > end.getX()) {
-                        //check if any squares in between start and end point are occupied
-                        for (int i = start.getX(); i <= end.getX(); i++) {
-                            if (board.getSquare(i, start.getY()).getPiece() != null)
-                                return false;
-                        }
-                    } else {
-                        //moving down on column
-                        for (int i = end.getX(); i <= start.getX(); i++) {
-                            if (board.getSquare(i, start.getY()).getPiece() != null)
-                                return false;
-                        }
+                    if (start.getX() == end.getX()) {
+                        validMove = horizontalMovement(start, startRow, endRow, board);
                     }
-                    return true;
-                }
-            }
-            //horizontal movement
-            if (start.getX() == end.getX() && start.getPiece().isWhite() == true) {
-                if (end.getPiece() == null || end.getPiece().isWhite() == false) {
-                    //moving to the right on row
-                    if (start.getY() < end.getY()) {
-                        //if a piece is occupying a square in between starting square and destination, return false as a rook cannot jump over pieces
-                        for (int i = start.getY() + 1; i <= end.getY(); i++) {
-                            if (board.getSquare(start.getX(), i).getPiece() != null)
-                                return false;
-                        }
-                    } else {
-                        //moving to the left on row
-                        for (int i = end.getY(); i < start.getY(); i++) {
-                            if (board.getSquare(start.getX(), i).getPiece() != null)
-                                return false;
-                        }
-                    }
-                    return true;
-                }
-            }
 
+                    if (start.getY() == end.getY()){
+                        validMove = verticalMovement(start, startCol, endCol, board);
+                    }
+                }
+                return validMove;
+            }
+            return false;
         } else { //player 2 movement
             //vertical movement
-            if (start.getY() == end.getY() && start.getPiece().isWhite() == false) {
-
+            if (start.getPiece().isWhite() == false) {
                 if (end.getPiece() == null || end.getPiece().isWhite() == true) {
-                    //moving up on column
-                    if (start.getX() > end.getX()) {
-                        //check if any squares in between start and end point are occupied
-                        for (int i = start.getX(); i <= end.getX(); i++) {
-                            if (board.getSquare(i, start.getY()).getPiece() != null)
-                                return false;
-                        }
-                    } else {
-                        //moving down on column
-                        for (int i = end.getX(); i <= start.getX(); i++) {
-                            if (board.getSquare(i, start.getY()).getPiece() != null)
-                                return false;
-                        }
+                    if (start.getX() == end.getX()) {
+                        validMove = horizontalMovement(start, startRow, endRow, board);
                     }
-                    return true;
-                }
-            }
-            //horizontal movement
-            if (start.getX() == end.getX() && start.getPiece().isWhite() == false) {
-                if (end.getPiece() == null || end.getPiece().isWhite() == true) {
-                    //moving to the right on row
-                    if (start.getY() < end.getY()) {
-                        for (int i = start.getY() + 1; i <= end.getY(); i++) {
-                            if (board.getSquare(start.getX(), i).getPiece() != null)
-                                return false;
-                        }
-                    } else {
-                        //moving to the left on row
-                        for (int i = end.getY(); i < start.getY(); i++) {
-                            if (board.getSquare(start.getX(), i).getPiece() != null)
-                                return false;
-                        }
+                    if (start.getY() == end.getY()){
+                        validMove = verticalMovement(start, startCol, endCol, board);
                     }
-                    return true;
                 }
+                return validMove;
             }
-        }
             return false;
+        }
     }
+
+    public boolean horizontalMovement( Square start, int startRow, int endRow, Board board){
+        //horizontal movement
+        for (int i = Math.min(startRow,endRow) + 1; i <= Math.max(startRow,endRow); i++){
+                if (board.getSquare(i,start.getY()).getPiece() != null)
+                    return false;
+
+        }
+        return true;
+    }
+
+    public boolean verticalMovement(Square start, int startCol, int endCol, Board board){
+        //vertical movement
+
+            for (int i = Math.min(startCol,endCol) + 1; i < Math.max(startCol,endCol);i++){
+                if (board.getSquare(start.getX(),i).getPiece() != null)
+                    return false;
+            }
+
+        return true;
+    }
+
 
     @Override
     public String toString(){
