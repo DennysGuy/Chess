@@ -11,7 +11,7 @@ public class King extends Piece{
 
     public King(boolean white){
         super(white);
-        setIsKing(true);
+        this.setPieceName("King");
     }
 
     @Override
@@ -73,6 +73,14 @@ public class King extends Piece{
                     - the king cannot castle to a position that will put it in check
                     - the king cannot castle through a check
          */
+
+        //return false if king is in check
+
+        //return false if in pawn, queen, king or rook check position (diagonals)
+
+        //return false if in knight check position (over two, up one | over one up two)
+
+        //return false if rook or king is in check position (horizontals and verticals)
 
 
         return false;

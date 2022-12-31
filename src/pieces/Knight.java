@@ -6,6 +6,7 @@ import Engine.Game;
 public class Knight extends Piece{
     public Knight(boolean white){
         super(white);
+        this.setPieceName("Knight");
     }
 
     @Override
