@@ -69,7 +69,7 @@ public abstract class Piece {
         ~ i.e.: int startRow = Math.min(start.getX(),end.getX()) & int endRow = Math.max(start.getX(),end.getX())
     */
 
-    public boolean horizontalMovement( Square start, int startRow, int endRow, Board board){
+    public boolean horizontalMovement(Square start, int startRow, int endRow, Board board){
         //horizontal movement
         for (int i = startRow + 1; i <= endRow; i++){
             if (board.getSquare(i,start.getY()).getPiece() != null)
