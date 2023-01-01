@@ -36,6 +36,7 @@ public class Main {
                 }
             }
 
+            //win states
             if (game.getState().equals(GameState.WHITE_WIN)){
                 board.printBoard();
                 System.out.println("PLAYER ONE WINS!");
