@@ -17,6 +17,7 @@ public abstract class Piece {
     private String pieceName;
 
 
+
     public Piece(final boolean white){
         this.setWhiteStatus(white);
     }
@@ -45,6 +46,10 @@ public abstract class Piece {
 
     public String getPieceName(){
         return this.pieceName;
+    }
+
+    public boolean getKilledStatus(){
+        return this.killed;
     }
 
     //setters

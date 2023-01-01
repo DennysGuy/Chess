@@ -8,22 +8,10 @@ import java.util.Scanner;
 public class Game {
     GameState state;
     boolean playerOne = true;
+
+    int choice = -1;
     //set up game loop
-    public Game(GameState state){
-        this.state = state;
-        Board board = new Board();
-        Scanner inp = new Scanner(System.in);
-
-        while (state == GameState.ACTIVE){
-            board.printBoard();
-            if(getPlayer() == true){
-                playerOneMove(inp,board);
-
-            }else {
-                playerTwoMove(inp,board);
-            }
-        }
-
+    public Game(){
 
     }
 
@@ -40,16 +28,28 @@ public class Game {
         return Objects.hash(state, playerOne);
     }
 
-    //Getter to check player
-    public void setPlayer(boolean player){
-        this.playerOne = player;
-    }
 
+
+    //Getter
     public boolean getPlayer(){
         return this.playerOne;
     }
 
-    public void playerOneMove(Scanner inp, Board board){
+    public GameState getState(){
+        return this.state;
+    }
+
+    //Setters
+    public void setPlayer(boolean player){
+        this.playerOne = player;
+    }
+
+    public void setState(GameState state){
+        this.state = state;
+
+    }
+
+    public void playerOneMove(Scanner inp, Board board, Game game){
         String coordinates;
         String[] startCoordinates;
         String[] endCoordinates;
@@ -72,14 +72,14 @@ public class Game {
 
         Move move = new Move();
 
-        boolean newMove = move.newMove(board, board.getSquare(Integer.parseInt(startCoordinates[0]),Integer.parseInt(startCoordinates[1])), board.getSquare(Integer.parseInt(endCoordinates[0]),Integer.parseInt(endCoordinates[1])), this.getPlayer());
+        boolean newMove = move.newMove(board, board.getSquare(Integer.parseInt(startCoordinates[0]),Integer.parseInt(startCoordinates[1])), board.getSquare(Integer.parseInt(endCoordinates[0]),Integer.parseInt(endCoordinates[1])), this.getPlayer(),game);
 
         if (newMove == true) {
             this.setPlayer(false);
         }
     }
 
-    public void playerTwoMove(Scanner inp, Board board){
+    public void playerTwoMove(Scanner inp, Board board, Game game){
         String coordinates;
         String[] startCoordinates;
         String[] endCoordinates;
@@ -102,7 +102,7 @@ public class Game {
 
         Move move = new Move();
 
-        boolean newMove = move.newMove(board, board.getSquare(Integer.parseInt(startCoordinates[0]),Integer.parseInt(startCoordinates[1])), board.getSquare(Integer.parseInt(endCoordinates[0]),Integer.parseInt(endCoordinates[1])), this.getPlayer());
+        boolean newMove = move.newMove(board, board.getSquare(Integer.parseInt(startCoordinates[0]),Integer.parseInt(startCoordinates[1])), board.getSquare(Integer.parseInt(endCoordinates[0]),Integer.parseInt(endCoordinates[1])), this.getPlayer(),game);
 
 
         if (newMove == true) {

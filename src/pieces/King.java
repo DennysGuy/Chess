@@ -6,7 +6,7 @@ import Engine.*;
 import java.util.Objects;
 
 public class King extends Piece{
-    private boolean castling = false;
+    private boolean castling  = false;
     private boolean firstMove = true;
 
     public King(boolean white){
@@ -34,9 +34,7 @@ public class King extends Piece{
         /*
             ~ Movement mechanics:
                 - The king can advance 1 square in any direction
-
             ~ it should be notified if a King is put into check
-
             ~the king's capturing mechanic works the same as the movement mechanic
                 - the king can move to a square that is either empty or has an opposing piece occupying it
          */
@@ -60,7 +58,6 @@ public class King extends Piece{
 
         return validMove;
     }
-
 
     //check if king can castle
     public boolean canCastle(){
@@ -90,17 +87,15 @@ public class King extends Piece{
         if ((Math.abs(destX - destY) == 1) || (destX * destY == 1)) {
             return true;
         }
-
         return false;
     }
 
-
-
-
+    //getters
     public boolean isCastling(){
             return this.castling;
     }
 
+    //setters
     public void setCastling(boolean castle){
         this.castling = castle;
     }

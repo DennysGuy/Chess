@@ -14,14 +14,39 @@ public class Main {
             System.out.print("Enter a choice: ");
             choice = kb.nextInt();
 
-        }while(choice < 0);
-
+        }while(choice < 1 || choice > 3);
 
         if (choice == 1) {
             clearConsole();
             //initialize game class here
-            GameState state = GameState.ACTIVE;
-            Game newGame = new Game(state);
+            Game game = new Game();
+
+            game.setState(GameState.ACTIVE);
+
+            Board board = new Board();
+            Scanner inp = new Scanner(System.in);
+
+            while (game.getState().equals(GameState.ACTIVE)){
+                board.printBoard();
+                if(game.getPlayer() == true){
+                    game.playerOneMove(inp,board,game);
+
+                }else {
+                    game.playerTwoMove(inp,board,game);
+                }
+            }
+
+            if (game.getState().equals(GameState.WHITE_WIN)){
+                board.printBoard();
+                System.out.println("PLAYER ONE WINS!");
+
+            }
+
+            if (game.getState().equals(GameState.BLACK_WIN)){
+                board.printBoard();
+                System.out.println("PLAYER TWO WINS!");
+            }
+
         }
         else if (choice == 2){
             System.out.println("create a static method for rules");

@@ -45,15 +45,23 @@ public class Move {
         return Objects.hash(start, end, piece);
     }
 
-    public boolean newMove(Board board, Square start, Square end, boolean player){
+    public boolean newMove(Board board, Square start, Square end, boolean player, Game game){
         this.start = start;
         this.end = end;
 
         //check to see if square is empty
         if (start.getPiece().canMove(board, start, end, player) == true){
+
+            if (end.getPiece() != null && end.getPiece().getPieceName().equals("King")){
+                if (game.getPlayer() == true) {
+                    game.setState(GameState.WHITE_WIN);
+                }else{
+                    game.setState(GameState.BLACK_WIN);
+                }
+            }
+
             end.setPiece(start.getPiece());
             start.setPiece(null);
-
 
             System.out.println("\n***Move Successful!***");
             return true;
