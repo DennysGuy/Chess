@@ -66,7 +66,6 @@ public class Move {
             System.out.println("\n***Move Successful!***");
             return true;
 
-
         }else{
             System.out.println("\n***Invalid Move, Try Again!***");
             return false;
@@ -74,6 +73,18 @@ public class Move {
 
 
 
+    }
+
+    public boolean newCastle(Board board, Square start, Square end, boolean player, Game game){
+        if (start.getPiece().getPieceName().equals("King") && (start.getPiece().isCastling()) == true){
+            end.setPiece(start.getPiece());
+            start.setPiece(null);
+
+            //handle rook movement for team black and white
+            boolean rookMove = newMove(board,board.getSquare(1,2),board.getSquare(end.getY()-1,end.getX()),player,game);
+
+        }
+        return false;
     }
 
     public Square getStart(){

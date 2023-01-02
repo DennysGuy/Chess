@@ -72,7 +72,13 @@ public class Game {
 
         Move move = new Move();
 
-        boolean newMove = move.newMove(board, board.getSquare(Integer.parseInt(startCoordinates[0]),Integer.parseInt(startCoordinates[1])), board.getSquare(Integer.parseInt(endCoordinates[0]),Integer.parseInt(endCoordinates[1])), this.getPlayer(),game);
+        int startX = Integer.parseInt(startCoordinates[0]);
+        int startY = Integer.parseInt(startCoordinates[1]);
+
+        int endX = Integer.parseInt(endCoordinates[0]);
+        int endY = Integer.parseInt(endCoordinates[1]);
+
+        boolean newMove = move.newMove(board, board.getSquare(startX,startY), board.getSquare(endX,endY), this.getPlayer(),game);
 
         if (newMove == true) {
             this.setPlayer(false);
@@ -102,7 +108,13 @@ public class Game {
 
         Move move = new Move();
 
-        boolean newMove = move.newMove(board, board.getSquare(Integer.parseInt(startCoordinates[0]),Integer.parseInt(startCoordinates[1])), board.getSquare(Integer.parseInt(endCoordinates[0]),Integer.parseInt(endCoordinates[1])), this.getPlayer(),game);
+        int startX = Integer.parseInt(startCoordinates[0]);
+        int startY = Integer.parseInt(startCoordinates[1]);
+
+        int endX = Integer.parseInt(endCoordinates[0]);
+        int endY = Integer.parseInt(endCoordinates[1]);
+
+        boolean newMove = move.newMove(board, board.getSquare(startX,startY), board.getSquare(endX,endY), this.getPlayer(),game);
 
 
         if (newMove == true) {

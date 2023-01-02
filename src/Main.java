@@ -39,12 +39,14 @@ public class Main {
             //win states
             if (game.getState().equals(GameState.WHITE_WIN)){
                 board.printBoard();
+                System.out.println("   Check Mate!  ");
                 System.out.println("PLAYER ONE WINS!");
 
             }
 
             if (game.getState().equals(GameState.BLACK_WIN)){
                 board.printBoard();
+                System.out.println("   Check Mate!  ");
                 System.out.println("PLAYER TWO WINS!");
             }
 

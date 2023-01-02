@@ -15,7 +15,10 @@ public abstract class Piece {
     private boolean firstMove = false;
     //name of piece
     private String pieceName;
-
+    //castling
+    private boolean castling = false;
+    //king check
+    private boolean check = false;
 
 
     public Piece(final boolean white){
@@ -40,6 +43,14 @@ public abstract class Piece {
         return this.white;
     }
 
+    public boolean isCastling(){
+        return this.castling;
+    }
+
+    public boolean inCheck(){
+        return this.check;
+    }
+
     public boolean isKilled(){
         return this.killed;
     }
@@ -55,6 +66,14 @@ public abstract class Piece {
     //setters
     public void setPieceName(String pieceName){
         this.pieceName = pieceName;
+    }
+
+    public void setCastling(boolean castle){
+        this.castling = castle;
+    }
+
+    public void setCheck(boolean check){
+        this.check = check;
     }
 
     public void setWhiteStatus(boolean status){
@@ -98,6 +117,25 @@ public abstract class Piece {
         }
         return true;
     }
+
+    //Ray Casts (used to check a path for a given piece - i.e. check if a piece is in a position to put the king in check)
+    public boolean verticalRayCast(Square start, Square end, int startRow, int endRow, Board board){
+        return false;
+    }
+
+    public boolean horizontalRayCast(Square start, Square end, int starCol, int endCol, Board board){
+        return false;
+    }
+
+    public boolean diagonalRayCast(Square start, Square end, int startRow, int endRow, int starCol, int endCol, Board board){
+        return false;
+    }
+
+    public boolean knightRayCast(Square start, Square end, Board board){
+        return false;
+    }
+
+
 
     //getters
     public boolean getFirstMove(){

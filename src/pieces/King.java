@@ -60,7 +60,7 @@ public class King extends Piece{
     }
 
     //check if king can castle
-    public boolean canCastle(){
+    public boolean canCastle(Board board, Square start, Square end, boolean player){
         /*
         ~ On the King's first turn, the King has the ability to "castle"
                 - castling is when the king moves 2 squares in either horizontal directions to which then a rook moves one square across the King to the opposite side (i.e.: if king moved two squares left, the rook on the left will automatically move one square to right of the king)
@@ -71,16 +71,28 @@ public class King extends Piece{
                     - the king cannot castle through a check
          */
 
+        int destX = Math.abs(start.getX()-end.getX());
+        int destY = Math.abs(start.getY()-end.getY());
+
+        //return false if the square is not 2 away horizontally from start and square is occupied
+        if ((destX + destY) != 2 && end.getPiece() != null)
+            return false;
+
         //return false if king is in check
+        if (start.getPiece().getPieceName().equals("King") && start.getPiece().inCheck() == true)
+            return false;
 
         //return false if in pawn, queen, king or rook check position (diagonals)
+
+
+
 
         //return false if in knight check position (over two, up one | over one up two)
 
         //return false if rook or king is in check position (horizontals and verticals)
 
 
-        return false;
+        return true;
     }
 
     public boolean kingMovement(int destX, int destY){
@@ -91,14 +103,10 @@ public class King extends Piece{
     }
 
     //getters
-    public boolean isCastling(){
-            return this.castling;
-    }
+
 
     //setters
-    public void setCastling(boolean castle){
-        this.castling = castle;
-    }
+
 
 
     @Override
