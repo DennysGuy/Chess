@@ -104,11 +104,13 @@ public class King extends Piece{
 
     //getters
     public boolean verticalHorizontalPieceCheck(Square square, Board board){
+        //horizontal check
         for(int i = 0; i < 7; i++){
             if (board.getSquare(square.getX(),i).getPiece().getPieceName().equals("Rook") || board.getSquare(square.getX(),i).getPiece().getPieceName().equals("Queen"));
             return true;
         }
 
+        //vertical check
         for (int i = 0; i < 7; i++){
             if (board.getSquare(i,square.getY()).getPiece().getPieceName().equals("Rook") || board.getSquare(i,square.getY()).getPiece().getPieceName().equals("Queen"));
             return true;
