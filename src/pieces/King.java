@@ -103,6 +103,27 @@ public class King extends Piece{
     }
 
     //getters
+    public boolean verticalHorizontalPieceCheck(Square square, Board board){
+        for(int i = 0; i < 7; i++){
+            if (board.getSquare(square.getX(),i).getPiece().getPieceName().equals("Rook") || board.getSquare(square.getX(),i).getPiece().getPieceName().equals("Queen"));
+            return true;
+        }
+
+        for (int i = 0; i < 7; i++){
+            if (board.getSquare(i,square.getY()).getPiece().getPieceName().equals("Rook") || board.getSquare(i,square.getY()).getPiece().getPieceName().equals("Queen"));
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean diagonalRayCast(Square start, Square end, int startRow, int endRow, int starCol, int endCol, Board board){
+        return false;
+    }
+
+    public boolean knightRayCast(Square start, Square end, Board board){
+        return false;
+    }
 
 
     //setters
