@@ -84,9 +84,6 @@ public class King extends Piece{
 
         //return false if in pawn, queen, king or rook check position (diagonals)
 
-
-
-
         //return false if in knight check position (over two, up one | over one up two)
 
         //return false if rook or king is in check position (horizontals and verticals)
@@ -95,6 +92,7 @@ public class King extends Piece{
         return true;
     }
 
+    //determine if a king can move or notw
     public boolean kingMovement(int destX, int destY){
         if ((Math.abs(destX - destY) == 1) || (destX * destY == 1)) {
             return true;
@@ -102,20 +100,49 @@ public class King extends Piece{
         return false;
     }
 
-    //getters
-    public boolean verticalHorizontalPieceCheck(Square square, Board board){
-        //horizontal check
-        for(int i = 0; i < 7; i++){
-            if (board.getSquare(square.getX(),i).getPiece().getPieceName().equals("Rook") || board.getSquare(square.getX(),i).getPiece().getPieceName().equals("Queen"));
-            return true;
-        }
+    //checkers
+    /*
+     -- these will check column, row, diagonal, and the special knight path for a piece -- this will be used to determine if the King is currently in check
+     -- These checks should be executed after every turn to determine if a King piece is in check or not
+     -- Circumstances these functions will be used for:
+            - Check if a move puts a specific King piece in check
+            - Displaying to the Players that a specific King piece is in check (Player one or Player two)
+            - Determining if the King is allowed to castle or not
 
+    */
+    public boolean horizontalPieceCheck(Square square, Board board){
+        //horizontal check -- start at the end of the row and work your way up until we hit
+        for(int i = 0; i < 7; i++){
+            //need to check if spaces in between opposing piece and king are null
+            if (board.getSquare(square.getX(),i).getPiece().getPieceName().equals("Rook") && board.getSquare(square.getX(),i).getPiece().isWhite() != square.getPiece().isWhite()
+                    || board.getSquare(square.getX(),i).getPiece().getPieceName().equals("Queen") && board.getSquare(square.getX(),i).getPiece().isWhite() != square.getPiece().isWhite()){
+                //once a piece is found, check squares for piece in between found piece and king - if a piece is found, return false as a Queen or Rook cannot jump over any other piece
+                //we need to re-write using min or max so that we can check if the piece found X is greater or less than the king's orientation
+                int minCol = Math.min(square.getY(),i);
+                int maxCol = Math.max(square.getY(),i);
+                for (int j = board.getSquare(square.getX(),minCol).getY(); j < maxCol;j++) {
+                    if (board.getSquare(square.getX(), j).getPiece() != null)
+                        return false;
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean verticalPieceCheck(Square square, Board board){
         //vertical check
         for (int i = 0; i < 7; i++){
-            if (board.getSquare(i,square.getY()).getPiece().getPieceName().equals("Rook") || board.getSquare(i,square.getY()).getPiece().getPieceName().equals("Queen"));
+            if (board.getSquare(i,square.getY()).getPiece().getPieceName().equals("Rook") && board.getSquare(i,square.getY()).getPiece().isWhite() != square.getPiece().isWhite()
+                    || board.getSquare(i,square.getY()).getPiece().getPieceName().equals("Queen") && board.getSquare(i,square.getY()).getPiece().isWhite() != square.getPiece().isWhite()){
+                int minRow = Math.min(square.getX(),i);
+                int maxRow = Math.max(square.getX(),i);
+                for (int j = board.getSquare(minRow,square.getY()).getX(); j < maxRow;j++)
+                    if (board.getSquare(j,square.getY()).getPiece() != null)
+                        return false;
+            }
             return true;
         }
-
         return false;
     }
 
