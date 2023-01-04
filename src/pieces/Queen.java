@@ -169,7 +169,7 @@ public class Queen extends Piece{
 
         if (startRow == endRow) {
             // check the squares between the start and end columns. Horizontal movements
-            for (int col = Math.min(startCol, endCol) + 1; col < Math.max(startCol, endCol); col++) {
+            for (int col = Math.min(startCol, endCol); col < Math.max(startCol, endCol); col++) {
                 //Check before it throws a null value and breaks the program.
                 if (board.getSquare(startRow, col).getPiece() == null) continue;
                 //This is for white
@@ -187,7 +187,7 @@ public class Queen extends Piece{
 
         if (startCol == endCol) {
             // check the squares between the start and end rows. Vertical movements
-            for (int row = Math.min(startRow, endRow) + 1; row < Math.max(startRow, endRow); row++) {
+            for (int row = Math.min(startRow, endRow); row < Math.max(startRow, endRow); row++) {
                 //Check before it throws a null value and breaks the program.
                 if (board.getSquare(row, startCol).getPiece() == null) continue;
                 //This is for white.
@@ -202,20 +202,18 @@ public class Queen extends Piece{
             return true;
         }
 
-
-        /*
-        This is for diagonal movement.
-        Work in progress and requires tons more additional testing.
-        Currently working as it stands, a little surprising how well that went.
-         */
-        //Checking for diagonal movement
         if (Math.abs(endRow - startRow) == Math.abs(endCol - startCol)) {
             // diagonal movement calculation for direction of movement.
             int rowStep = (endRow - startRow) / Math.abs(endRow - startRow);
             int colStep = (endCol - startCol) / Math.abs(endCol - startCol);
 
+            // Added a check for the case where the start and end positions are the same
+            if (startRow == endRow && startCol == endCol) {
+                return true;
+            }
+
             // check the squares between the start and end squares
-            for (int row = startRow + rowStep, col = startCol + colStep; row != endRow; row += rowStep, col += colStep) {
+            for (int row = (startRow + rowStep), col = startCol + colStep; row != endRow + rowStep; row += rowStep, col += colStep) {
                 //Check before it throws a null value and breaks the program.
                 if (board.getSquare(row, col).getPiece() == null) continue;
                 //This is for white.
