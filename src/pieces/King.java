@@ -150,7 +150,59 @@ public class King extends Piece{
         return false;
     }
 
-    public boolean knightRayCast(Square start, Square end, Board board){
+    public boolean knightCheck(Square start, Board board){
+
+        /*
+           ****need to check if square coords are not out of boundary****
+                 -- when check up 2 and to the left or right 1:
+                        -- X needs to be at max 5/at min 2 as we need at least two squares going up or down
+                        -- When check to the right, Y can be no less than 0, when checking the left - Y can be no greater than 7
+                 -- when check to the left or right 2 and up or down 1:
+                        -- Y needs to be at max 5/at min 2 as we need at least two squares going left or right
+                        -- When checking up, X can be no greater than 7/ when checking down, X can be no less than 0
+
+        */
+
+        //check if knight is up 2 and over 1 to the left
+        if (board.getSquare(start.getX()+2,start.getY()-1) != null && board.getSquare(start.getX()+2,start.getY()-1).getPiece().getPieceName().equals("Knight") && board.getSquare(start.getX()+2,start.getY()-1).getPiece().isWhite() != start.getPiece().isWhite()){
+            return true;
+        }
+
+        //check if knight is up 2 and over 1 to the right
+        if (board.getSquare(start.getX()+2,start.getY()+1).getPiece().getPieceName().equals("Knight") && board.getSquare(start.getX()+2,start.getY()+1).getPiece().isWhite() != start.getPiece().isWhite()){
+            return true;
+        }
+
+        //check if knight is down 2 over 1 to the left
+        if (board.getSquare(start.getX()-2,start.getY()-1).getPiece().getPieceName().equals("Knight") && board.getSquare(start.getX()-2,start.getY()-1).getPiece().isWhite() != start.getPiece().isWhite()){
+            return true;
+        }
+
+        //check if knight is down 2 over 1 to the right
+        if (board.getSquare(start.getX()-2,start.getY()+1).getPiece().getPieceName().equals("Knight") && board.getSquare(start.getX()-2,start.getY()+1).getPiece().isWhite() != start.getPiece().isWhite()){
+            return true;
+        }
+
+        //check if knight is to the left 2 and up one
+        if (board.getSquare(start.getX()+1,start.getY()-2).getPiece().getPieceName().equals("Knight") && board.getSquare(start.getX()+1,start.getY()-2).getPiece().isWhite() != start.getPiece().isWhite()){
+            return true;
+        }
+
+        //check if knight is to the left 2 and down one
+        if (board.getSquare(start.getX()-1,start.getY()-2).getPiece().getPieceName().equals("Knight") && board.getSquare(start.getX()-1,start.getY()-2).getPiece().isWhite() != start.getPiece().isWhite()){
+            return true;
+        }
+
+        //check if knight is to the right 2 and up one
+        if (board.getSquare(start.getX()+1,start.getY()+2).getPiece().getPieceName().equals("Knight") && board.getSquare(start.getX()+1,start.getY()+2).getPiece().isWhite() != start.getPiece().isWhite()){
+            return true;
+        }
+
+        //check if knight it to the right 2 and down one
+        if (board.getSquare(start.getX()-1,start.getY()+2).getPiece().getPieceName().equals("Knight") && board.getSquare(start.getX()-1,start.getY()+2).getPiece().isWhite() != start.getPiece().isWhite()){
+            return true;
+        }
+
         return false;
     }
 
