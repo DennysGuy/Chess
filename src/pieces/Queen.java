@@ -14,8 +14,6 @@ public class Queen extends Piece{
     @Override
     public boolean canMove(Board board, Square start, Square end, boolean player) {
 
-
-
         // get the current row and column of the start square
         int startRow = start.getX();
         int startCol = start.getY();
