@@ -20,12 +20,13 @@ public class Bishop extends Piece{
         int endRow = end.getX();
         int endCol = end.getY();
 
+        //Moving up on the board
         if (start.getX() > end.getX()) {
             //Moving up & left on the board
             if (start.getY() > end.getY()) {
-                // check if the queen is moving diagonally
+                // check if the bishop is moving diagonally
                 if (Math.abs(startRow - endRow) == Math.abs(startCol - endCol)) {
-                    // check if there are any pieces blocking the queen's path
+                    // check if there are any pieces blocking the bishop's path
                     if (isClearPath(board, start, end)) {
                         return true;
                     }
@@ -33,15 +34,42 @@ public class Bishop extends Piece{
             }
             //Moving up & right on the board.
             else if (start.getY() < end.getY()) {
-                // check if the queen is moving diagonally
+                // check if the bishop is moving diagonally
                 if (Math.abs(startRow - endRow) == Math.abs(startCol - endCol)) {
-                    // check if there are any pieces blocking the queen's path
+                    // check if there are any pieces blocking the bishop's path
                     if (isClearPath(board, start, end)) {
                         return true;
                     }
                 }
             }
         }
+
+        //Moving down on the board.
+        if(start.getX() < end.getX()) {
+            //Moving down & left on the board
+            if (start.getY() > end.getY()) {
+                // check if the bishop is moving diagonally
+                if (Math.abs(startRow - endRow) == Math.abs(startCol - endCol)) {
+                    // check if there are any pieces blocking the bishop's path
+                    if (isClearPath(board, start, end)) {
+                        return true;
+                    }
+                }
+            }
+            //Moving down & right on the board.
+            else if (start.getY() < end.getY()) {
+                // check if the bishop is moving diagonally
+                if (Math.abs(startRow - endRow) == Math.abs(startCol - endCol)) {
+                    // check if there are any pieces blocking the bishop's path
+                    if (isClearPath(board, start, end)) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+
+
         return false;
     }
 

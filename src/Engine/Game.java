@@ -82,6 +82,8 @@ public class Game {
 
         this.isKingInCheck(board);
 
+
+
         if (newMove == true) {
             this.setPlayer(false);
         }
@@ -137,6 +139,8 @@ public class Game {
 
         return false;
     }
+
+
 
     public boolean horizontalPieceCheck(Square square, Board board){
         //horizontal check -- start at the end of the row and work your way up until we hit
