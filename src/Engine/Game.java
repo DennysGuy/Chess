@@ -127,15 +127,18 @@ public class Game {
 
     public boolean isKingInCheck(Board board){
 
+        //loop through the board until we hit a piece that is labeled king
+        //once we do that, we run the checks on that square to see if the king piece is in check
         for(int i = 0; i < 7; i++){
             for(int j = 0; j < 7; j++){
-                if(board.getSquare(i,j).getPiece().equals("King")){
+                if(board.getSquare(i,j).getPiece().getPieceName().equals("King")){
                     Square king = board.getSquare(i,j);
                     if (horizontalPieceCheck(king,board) || verticalPieceCheck(king,board) || knightCheck(king,board) || diagonalPieceCheck(king,board))
                         return true;
                 }
             }
         }
+
 
         return false;
     }
@@ -189,8 +192,8 @@ public class Game {
         for (int i = 0;i < 7; i++){
             for(int j = 0; j < 7; j++){
                 if (Math.abs(board.getSquare(i,j).getX() - board.getSquare(i,j).getY()) == Math.abs(piece.getX()-piece.getY())){
-                    if (board.getSquare(i,j).getPiece().equals("Rook") && board.getSquare(i,j).getPiece().isWhite() != piece.getPiece().isWhite()
-                            || board.getSquare(i,j).getPiece().equals("Queen") && board.getSquare(i,j).getPiece().isWhite() != piece.getPiece().isWhite())
+                    if (board.getSquare(i,j).getPiece().getPieceName().equals("Rook") && board.getSquare(i,j).getPiece().isWhite() != piece.getPiece().isWhite()
+                            || board.getSquare(i,j).getPiece().getPieceName().equals("Queen") && board.getSquare(i,j).getPiece().isWhite() != piece.getPiece().isWhite())
                         //check if squares between Rook/Queen and King are empty, if they are return true, if not, return false
                         startRow = Math.min(board.getSquare(i,j).getX(),piece.getX());
                         endRow   = Math.max(board.getSquare(i,j).getX(),piece.getY());
