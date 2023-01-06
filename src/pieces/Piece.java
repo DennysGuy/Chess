@@ -118,6 +118,19 @@ public abstract class Piece {
         return true;
     }
 
+    //checkers
+    /*
+     -- these will check column, row, diagonal, and the special knight path for a piece -- this will be used to determine if the King is currently in check
+     -- These checks should be executed after every turn to determine if a King piece is in check or not
+     -- Circumstances these functions will be used for:
+            - Check if a move puts a specific King piece in check
+            - Displaying to the Players that a specific King piece is in check (Player one or Player two)
+            - Determining if the King is allowed to castle or not
+
+    */
+
+
+
     //getters
     public boolean getFirstMove(){
         return this.firstMove;
