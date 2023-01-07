@@ -216,6 +216,8 @@ public class Game {
         return false;
     }
 
+
+
     public boolean knightCheck(Square start, Board board){
 
         /*

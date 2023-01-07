@@ -4,6 +4,7 @@ import Board.*;
 import pieces.*;
 
 import java.util.Objects;
+import java.util.Scanner;
 
    /*
     1. Player will input an x and y coordinate for the piece they want to move.
@@ -27,6 +28,7 @@ public class Move {
     private Square start;
     private Square end;
     private Piece piece;
+    private boolean promotion = false;
 
     public Move(){
 
@@ -48,6 +50,7 @@ public class Move {
     public boolean newMove(Board board, Square start, Square end, boolean player, Game game){
         this.start = start;
         this.end = end;
+        boolean promotion = this.promotion;
 
         //check to see if square is empty
         if (start.getPiece().canMove(board, start, end, player) == true){
@@ -64,8 +67,57 @@ public class Move {
             start.setPiece(null);
 
             System.out.println("\n***Move Successful!***");
-            return true;
 
+            /*
+            Will be refactored into its own method eventually.
+            This is just for general testing of the logic.
+             */
+
+            promotion = promotionCheck(end, board);
+            if(promotion){
+                System.out.println("Pawn promoted! Please enter your desired new piece(Ex: Q, R, B, or N):");
+                Scanner input = new Scanner(System.in);
+                String newPiece = null;
+                while(promotion){
+                    newPiece = input.nextLine();
+                    if(newPiece.equals("Q")){
+                        if(end.getPiece().isWhite()) {
+                            end.setPiece(new Queen(true));
+                        }else{
+                            end.setPiece(new Queen(false));
+                        }
+                        promotion = false;
+
+                    }else if(newPiece.equals("R")){
+                        if(end.getPiece().isWhite()) {
+                            end.setPiece(new Rook(true));
+                        }else{
+                            end.setPiece(new Rook(false));
+                        }
+                        promotion = false;
+
+                    }else if(newPiece.equals("B")){
+                        if(end.getPiece().isWhite()) {
+                            end.setPiece(new Bishop(true));
+                        }else{
+                            end.setPiece(new Bishop(false));
+                        }
+                        promotion = false;
+
+                    }else if(newPiece.equals("N")){
+                        if(end.getPiece().isWhite()) {
+                            end.setPiece(new Knight(true));
+                        }else{
+                            end.setPiece(new Knight(false));
+                        }
+                        promotion = false;
+
+                    }else{
+                        System.out.println("Invalid input, please enter a single character.");
+                    }
+                }
+            }
+            return true;
         }else{
             System.out.println("\n***Invalid Move, Try Again!***");
             return false;
@@ -83,6 +135,21 @@ public class Move {
             //handle rook movement for team black and white
             boolean rookMove = newMove(board,board.getSquare(1,2),board.getSquare(end.getY()-1,end.getX()),player,game);
 
+        }
+        return false;
+    }
+
+    public boolean promotionCheck(Square end, Board board){
+
+        //checking if the piece is a pawn.
+        if(end.getPiece().getPieceName().equals("Pawn")){
+            if(end.getPiece().isWhite() && end.getX() == 0){
+                return true;
+            }
+            else if(!(end.getPiece().isWhite()) && end.getX() == 7){
+                return true;
+            }
+            return false;
         }
         return false;
     }

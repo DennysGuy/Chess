@@ -151,11 +151,13 @@ public class Queen extends Piece{
             }
         }
 
-
         return false;
 
     }
-    public boolean isClearPath(Board board,Square start, Square end) {
+
+
+
+    public boolean isClearPath(Board board, Square start, Square end) {
         // get the current row and column of the start square
         int startRow = start.getX();
         int startCol = start.getY();
@@ -200,6 +202,7 @@ public class Queen extends Piece{
             return true;
         }
 
+
         if (Math.abs(endRow - startRow) == Math.abs(endCol - startCol)) {
             // diagonal movement calculation for direction of movement.
             int rowStep = (endRow - startRow) / Math.abs(endRow - startRow);
@@ -227,6 +230,17 @@ public class Queen extends Piece{
         }
 
         return false;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        return super.equals(o);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 
     @Override
