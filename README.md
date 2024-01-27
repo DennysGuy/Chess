@@ -1,4 +1,6 @@
---Chess by Matt Matriciano and Tanner Stephenson an exercise in OOP using java--
+                    --Chess--
+      by Matt Matriciano and Tanner Stephenson 
+--an exercise in Object Oriented Programming using Java--
 
 To run this software:
 
