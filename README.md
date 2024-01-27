@@ -1,4 +1,4 @@
-                    --Chess--
+#                CHESS
       by Matt Matriciano and Tanner Stephenson 
 --an exercise in Object Oriented Programming using Java--
 
